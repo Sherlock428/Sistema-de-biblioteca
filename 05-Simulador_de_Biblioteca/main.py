@@ -7,7 +7,7 @@ from  user_utility import user_main
 
 def all_accounts():
     accounts = [User(id=123, name="Mano", library_books=[Books(id=1, title="Aquele Livro 01", author='omilior', avaliable=False),Books(id=1, title="Aquele Livro 02", author='mano', avaliable=False)])]
-    account_librarys = [Library(code=1234, name="New biblioteca", all_books=[Books(id=1, title="o melhor livro de todos", author='omilior', avaliable=True),Books(id=1, title="O livro 01", author='mano', avaliable=True)])]
+    account_librarys = [Library(code=1234, name="New biblioteca", all_books=[Books(id=1, title="o melhor livro de todos", author='omilior', avaliable=True),Books(id=2, title="O livro 01", author='mano', avaliable=True)])]
 
     return accounts, account_librarys
 
@@ -32,7 +32,7 @@ def main():
         login = login_user(accounts)
 
         if login:
-            user_main(login, accounts_adm[0])
+            user_main(login, accounts_adm[0], accounts)
         
     elif option == 3:
         login = login_library(accounts_adm)
