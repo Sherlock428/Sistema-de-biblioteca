@@ -13,7 +13,8 @@ def all_accounts():
 
 def main():
     accounts, accounts_adm = all_accounts()
-    print(f"""
+    while True:
+        print(f"""
 {'=' * 30}
 {'Bem-Vindo Ao BBTECA'.center(30)}
 {'=' * 30}
@@ -24,20 +25,20 @@ def main():
 [4] Sair
 """)
     
-    option = int(input("Escolha: "))
+        option = int(input("Escolha: "))
 
-    if option == 1:
-        register(accounts)
-    elif option == 2:
-        login = login_user(accounts)
+        if option == 1:
+            register(accounts)
+        elif option == 2:
+            login = login_user(accounts)
 
-        if login:
-            user_main(login, accounts_adm[0], accounts)
-        
-    elif option == 3:
-        login = login_library(accounts_adm)
+            if login:
+                user_main(login, accounts_adm[0], accounts)
+            
+        elif option == 3:
+            login = login_library(accounts_adm)
 
-        if login:
-            main_library(login, accounts)
+            if login:
+                main_library(login, accounts)
 
 main()

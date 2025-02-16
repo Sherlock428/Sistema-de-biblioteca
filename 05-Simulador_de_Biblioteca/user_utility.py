@@ -123,17 +123,18 @@ def user_config(user, accounts):
             while choice not in "SN":
                 choice = input("S ou N").upper()
 
-            if choice != "N":
+            if choice == "S":
                 print("Sua conta foi deletada")
+                # accounts.remove(user)
                 accounts.remove(user)
                 return None
-            
+        return user
     except (ValueError, TypeError):
         print("ERROR: Digite um erro valor válido")
 
 def user_main(user, library, accounts):
     
-    while user:
+    while True:
         print(f"""
 {'=' * 30}
 {f'Biblioteca {library.name}'.center(30)}
@@ -168,8 +169,9 @@ def user_main(user, library, accounts):
                 reserved_books(user)
                 input()
             elif option == 6:
-                user_config(user, accounts)
-                if user is None:
+                user = user_config(user, accounts)
+                if not user:
+                    print(accounts)
                     return
             else:
                 print("Saindo...")
