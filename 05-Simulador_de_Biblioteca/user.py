@@ -4,4 +4,5 @@ from dataclasses import dataclass
 class User:
     id: int
     name: str
+    rating: int
     library_books: list

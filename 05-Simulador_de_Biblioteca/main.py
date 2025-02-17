@@ -4,17 +4,20 @@ from books import Books
 from login import register, login_user, login_library
 from library_utility import main_library
 from  user_utility import user_main
+import os
 
 def all_accounts():
-    accounts = [User(id=123, name="Mano", library_books=[Books(id=1, title="Aquele Livro 01", author='omilior', avaliable=False),Books(id=1, title="Aquele Livro 02", author='mano', avaliable=False)])]
-    account_librarys = [Library(code=1234, name="New biblioteca", all_books=[Books(id=1, title="o melhor livro de todos", author='omilior', avaliable=True),Books(id=2, title="O livro 01", author='mano', avaliable=True)])]
+    accounts = [User(id=123, name="Mano", rating=1, library_books=[])]
+    account_librarys = [Library(code=1234, name="New biblioteca", all_books=[Books(id=1, title="O melhor de todos", author="Omilior", avaliable=True, delivery_time=None), Books(id=2, title="O Livro 01", author="Manito", avaliable=True, delivery_time=None), Books(id=3, title="Aquele lá", author="Ali", avaliable=True, delivery_time=None), Books(id=4, title="O Livro 02: O Retorno do 01", author="Manito", avaliable=True, delivery_time=None)])]
 
     return accounts, account_librarys
 
 def main():
     accounts, accounts_adm = all_accounts()
     while True:
-        print(f"""
+        os.system('cls')
+        try:
+            print(f"""
 {'=' * 30}
 {'Bem-Vindo Ao BBTECA'.center(30)}
 {'=' * 30}
@@ -25,20 +28,27 @@ def main():
 [4] Sair
 """)
     
-        option = int(input("Escolha: "))
+            option = int(input("Escolha: "))
 
-        if option == 1:
-            register(accounts)
-        elif option == 2:
-            login = login_user(accounts)
+            if option == 1:
+                os.system('cls')
+                register(accounts)
+            elif option == 2:
+                os.system('cls')
+                login = login_user(accounts)
 
-            if login:
-                user_main(login, accounts_adm[0], accounts)
-            
-        elif option == 3:
-            login = login_library(accounts_adm)
+                if login:
+                    user_main(login, accounts_adm[0], accounts)
+                
+            elif option == 3:
+                os.system('cls')
+                login = login_library(accounts_adm)
 
-            if login:
-                main_library(login, accounts)
+                if login:
+                    main_library(login, accounts)
+        
+        except (ValueError, TypeError):
+            print("ERROR: Digite um valor válido")
+            input()
 
 main()

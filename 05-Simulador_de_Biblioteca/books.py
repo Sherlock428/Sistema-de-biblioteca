@@ -7,4 +7,5 @@ class Books:
     title: str
     author: str
     avaliable: bool
+    delivery_time: datetime = None
 
